@@ -1,0 +1,77 @@
+<div style="text-align: right;font-size: 30px;color: green" class="card-header">{{message}}</div>
+<div class="col-md-6 offset-md-3">
+    <div class="card card-body">
+        <div class="text-success card card-header mb-3" style="text-align: center">Add Students</div>
+        <form #studentForm='ngForm' (ngSubmit)='submit(studentForm)'>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" #studentsName='ngModel' name="studentsName" id="studentsName" class="form-control"
+                    placeholder="Enter the Name..." ngModel required minlength="5" maxlength="20">
+            </div>
+            <div *ngIf='studentsName.touched && studentsName.invalid'>
+                <div class="text-danger" *ngIf='studentsName.errors.required' class="mb-3"><small
+                        style="float: right;color: red "> *Name Must be Required</small></div>
+                <div class="text-danger" class="mb-3"
+                    *ngIf='studentsName.errors.minlength || studentsName.errors.maxlength'><small
+                        style="float: right; color: red"> *Minimum character should be > 5 and maximum character should
+                        be 20</small>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Age</span>
+                </div>
+                <input type="number" #age='ngModel' name="age" id="age" placeholder="Enter the age.."
+                    class="form-control" ngModel required pattern="[0-9]{2}">
+            </div>
+            <div *ngIf='age.touched && age.invalid'>
+                <div class="text-danger" *ngIf='age.errors.required' class="mb-3"><small
+                        style="float: right;color: red "> *Age is Mandatory</small>
+                </div>
+                <div class="text-danger" *ngIf='age.errors.pattern' class="mb-3"><small
+                        style="float: right;color: red "> *It only accepts 2 digit Numbers</small>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Marks</span>
+                </div>
+
+                <input type="number" #marks='ngModel' name="marks" id="marks" placeholder="Enter the marks..."
+                    class="form-control" ngModel pattern="[0-9]{3}" required>
+
+            </div>
+            <div *ngIf='marks.touched && marks.invalid'>
+                <div class="text-danger" *ngIf='marks.errors.required' class="mb-3"><small
+                        style="float: right;color: red "> *Marks is Mandatory</small>
+                </div>
+                <div class="text-danger" *ngIf='marks.errors.pattern' class="mb-3"><small
+                        style="float: right;color: red "> *It only accepts 3 digit Numbers</small>
+                </div>
+            </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Degree</span>
+                    </div>
+                    <input type="text" #degree='ngModel' name="degree" id="degree" placeholder="Enter the degree..."
+                        class="form-control" ngModel required minlength="2" maxlength="10">
+                </div>
+                <div *ngIf='degree.touched && degree.invalid'>
+                    <div class="text-danger" *ngIf='degree.errors.required' class="mb-3"><small
+                            style="float: right;color: red "> *Degree Must be Mandatory</small></div>
+                    <div class="text-danger" class="mb-3" *ngIf='degree.errors.minlength || degree.errors.maxlength'>
+                        <small style="float: right; color: red"> *Minimum character should be > 2 and maximum character
+                            should
+                            be 10</small>
+                    </div>
+                </div>
+                <div class="card-footer mb-3 mt-3">
+                    <button type="submit" class="btn btn-success float-right"
+                        [disabled]='studentForm.invalid'>Submit</button>
+                </div>
+            
+        </form>
+    </div>
+</div>
